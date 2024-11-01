@@ -9,11 +9,14 @@ screen_width = pyautogui.size().width
 
 def take_screenshot():
     # Get current datetime for filename and watermark 
+    
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
     
+    folder_path = f'screenshots/{datetime.now().strftime('%B-%d-%Y')}'
+
     # Create screenshots directory if it doesn't exist
-    if not os.path.exists('screenshots'):
-        os.makedirs('screenshots')
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
     
     # Take screenshot and save
     screenshot = pyautogui.screenshot()
@@ -49,7 +52,7 @@ def take_screenshot():
     draw.text((x, y), text, font=increased_font, fill=(255, 255, 255))
     
     # Save the screenshot with watermark
-    filename = f'screenshots/screenshot_{timestamp}.png'
+    filename = f'{folder_path}/screenshot_{timestamp}.png'
     screenshot.save(filename)
     print(f"Screenshot saved as {filename}")
 
